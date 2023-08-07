@@ -1,24 +1,28 @@
 const createRequest = (options = {}, callback) => {
     const xhr = new XMLHttpRequest();
-    let formData = new FormData();
-    formData.append('name', 'demo');
-    formData.append('email', 'demo@demo');
-    formData.append('password', 'demo');
-    xhr.open('GET', 'https://localhost:8000');
     xhr.responseType = 'json';
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            callback(null, xhr.response);
-        } else {
-            callback(new Error(`Ошибка ${xhr.status}: ${xhr.statusText}`));
-        }
-    };
-    xhr.send(formData);
-};
-createRequest({}, function (error, response) {
-    if (error) {
-        console.error(error);
+    let sendUrl = options.url
+    let formData = new FormData;
+    if (options.method === 'GET') {
+        console.log(options.data)
+        Object.entries(options.data).forEach(([key, value]) => {
+            sendUrl += `${key}=${value}`
+        })
+        sendUrl = sendUrl.slice(0, -1)
     } else {
-        console.log(response);
+        Object.entries(options.data).forEach(([key, value]) => {
+            formData.append(key, value)
+        })
     }
-});
+    try {
+        xhr.open(options.method, sendUrl)
+        xhr.send(formData);
+    } catch (error) {
+        callback(error, xhr.response)
+    }
+    xhr.addEventListener('load', () => {
+        if (xhr.status === 200 && xhr.readyState === xhr.DONE) {
+            options.callback(null, xhr.response)
+        }
+    })
+}
