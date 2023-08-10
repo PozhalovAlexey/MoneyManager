@@ -11,7 +11,7 @@ class User {
      * локальном хранилище.
      * */
     static setCurrent(user) {
-        localStorage.setItem(`/user`, JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user))
     }
 
     /**
@@ -27,7 +27,7 @@ class User {
      * из локального хранилища
      * */
     static current() {
-        return localStorage.getItem('user')
+        return JSON.parse(localStorage.getItem('user'));
     }
 
     /**
@@ -35,7 +35,23 @@ class User {
      * авторизованном пользователе.
      * */
     static fetch(callback) {
-
+        createRequest({
+            url: this.URL + '/current',
+            method: 'GET',
+            responseType: 'json',
+            callback: (error, response) => {
+                if (response.success) {
+                    const user = {
+                        name: response.user.name,
+                        id: response.user.id
+                    }
+                    User.setCurrent(user)
+                } else {
+                    User.unsetCurrent()
+                }
+                callback(error, response)
+            }
+        })
     }
 
     /**
@@ -66,7 +82,21 @@ class User {
      * User.setCurrent.
      * */
     static register(data, callback) {
-
+        createRequest({
+            url: this.URL + '/register',
+            method: 'POST',
+            responseType: 'json',
+            callback: (error, response) => {
+                if (response.user) {
+                    const user = {
+                        name: response.user.name,
+                        id: response.user.id
+                    }
+                    User.setCurrent(user)
+                }
+                callback(error, response)
+            }
+        })
     }
 
     /**
@@ -74,6 +104,16 @@ class User {
      * выхода необходимо вызвать метод User.unsetCurrent
      * */
     static logout(callback) {
-
+        createRequest({
+            url: this.URL + '/logout',
+            method: 'POST',
+            responseType: 'json',
+            callback: (error, response) => {
+                if (response) {
+                    User.unsetCurrent()
+                }
+                callback(error, response)
+            }
+        })
     }
 }

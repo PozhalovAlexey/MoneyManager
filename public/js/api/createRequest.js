@@ -21,8 +21,6 @@ const createRequest = (options = {}, callback) => {
         callback(error, xhr.response)
     }
     xhr.addEventListener('load', () => {
-        if (xhr.status === 200 && xhr.readyState === xhr.DONE) {
             options.callback(null, xhr.response)
-        }
     })
 }
