@@ -1,4 +1,4 @@
-const createRequest = (options = {}, callback) => {
+const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     let sendUrl = options.url;
@@ -20,10 +20,9 @@ const createRequest = (options = {}, callback) => {
         xhr.open(options.method, sendUrl);
         xhr.send(formData);
     } catch (error) {
-        callback(error, xhr.response);
+        options(error, xhr.response);
     }
 
     xhr.addEventListener('load', () => {
-        options.callback(null, xhr.response);
     });
 };

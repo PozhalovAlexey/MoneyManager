@@ -14,9 +14,6 @@ class AccountsWidget {
      * необходимо выкинуть ошибку.
      * */
     constructor(element) {
-        if (!element) {
-            throw new Error('Ошибка! Элемент не существует!')
-        }
         this.element = element;
         this.registerEvents();
         this.update()
@@ -30,8 +27,7 @@ class AccountsWidget {
      * вызывает AccountsWidget.onSelectAccount()
      * */
     registerEvents() {
-        const createNewAcc = document.querySelector('.accounts-panel');
-        createNewAcc.addEventListener('click', (e) => {
+        this.element.addEventListener('click', (e) => {
             e.preventDefault();
             if (e.target.closest('span.create-account')) {
                 App.getModal('create-account').open();
@@ -69,8 +65,7 @@ class AccountsWidget {
      * в боковой колонке
      * */
     clear() {
-        const list = document.querySelectorAll('.account');
-        list.forEach(item => item.remove())
+        this.element.forEach(item => item.remove())
     }
 
     /**
@@ -81,9 +76,9 @@ class AccountsWidget {
      * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
      * */
     onSelectAccount(element) {
-        const selectedAccount = document.querySelector('li.active');
-        if (selectedAccount) {
-            selectedAccount.classList.remove('active');
+
+        if (this.element) {
+            this.element.classList.remove('active');
         }
         element.classList.add('active');
         App.showPage('transactions', {
@@ -113,9 +108,8 @@ class AccountsWidget {
      * и добавляет его внутрь элемента виджета
      * */
     renderItem(data) {
-        const accountList = document.querySelector('.account-panel')
         data.forEach(item => {
-            accountList.insertAdjacentHTML('beforeend', this.getAccountHTML(item))
+            this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item))
         })
     }
 }
