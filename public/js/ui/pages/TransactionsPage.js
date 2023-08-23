@@ -129,7 +129,7 @@ class TransactionsPage {
      * в формат «10 марта 2019 г. в 03:20»
      * */
     formatDate(date) {
-        let currentDate = new Date();
+        let currentDate = new Date(date);
         const day = currentDate.toLocaleDateString('ru', {
             day: "numeric",
             month: 'long',
