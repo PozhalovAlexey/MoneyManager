@@ -40,13 +40,9 @@ class User {
             method: 'GET',
             callback: (error, response) => {
                 if (response.success) {
-                    const user = {
-                        name: response.user.name,
-                        id: response.user.id
-                    }
-                    User.setCurrent(user)
+                    this.setCurrent(response.user)
                 } else {
-                    User.unsetCurrent()
+                    this.unsetCurrent()
                 }
                 callback(error, response)
             }

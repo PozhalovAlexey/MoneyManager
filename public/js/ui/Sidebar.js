@@ -22,13 +22,8 @@ class Sidebar {
         toggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const sidebarMini = document.querySelector('body.sidebar-mini');
-            if (sidebarMini.classList.contains('sidebar-open')) {
-                sidebarMini.classList.remove('sidebar-open')
-                sidebarMini.classList.add('sidebar-collapse');
-            } else {
-                sidebarMini.classList.remove('sidebar-collapse')
-                sidebarMini.classList.add('sidebar-open')
-            }
+            sidebarMini.classList.toggle('sidebar-open')
+            sidebarMini.classList.toggle('sidebar-collapse')
         })
     }
 
@@ -40,20 +35,17 @@ class Sidebar {
      * выходу устанавливает App.setState( 'init' )
      * */
     static initAuthLinks() {
-        const sidebarButtons = document.querySelectorAll('.sidebar-menu');
-        sidebarButtons.forEach((button) => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                switch (e.target.closest('li').classList[1]) {
-                    case 'menu-item_login':
-                        App.getModal('login').open()
-                        break;
-                    case 'menu-item_register':
-                        App.getModal('register').open()
-                        break;
-                    case 'menu-item_logout':
-                        User.logout((response) => App.setState('init'))
-                        break;
+        document.querySelector('.menu-item_login a').addEventListener('click', () => {
+            App.getModal('login').open()
+        })
+        document.querySelector('.menu-item_register a').addEventListener('click', () => {
+            App.getModal('register').open()
+        })
+
+        document.querySelector('.menu-item_logout a').addEventListener('click', () => {
+            User.logout((error, response) => {
+                if (response.success) {
+                    App.setState('init')
                 }
             })
         })

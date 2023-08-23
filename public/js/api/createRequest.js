@@ -17,12 +17,12 @@ const createRequest = (options = {}) => {
     }
 
     try {
-        xhr.open(options.method, sendUrl);
-        xhr.send(formData);
+        xhr.addEventListener("readystatechange", function () {
+            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+                options.callback(xhr.response.error, xhr.response);
+            }
+        });
     } catch (error) {
-        options(error, xhr.response);
+        options.callback(error);
     }
-
-    xhr.addEventListener('load', () => {
-    });
 };
