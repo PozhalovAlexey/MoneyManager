@@ -15,13 +15,12 @@ const createRequest = (options = {}) => {
             });
         }
     }
-
+    xhr.addEventListener("load", function () {
+        options.callback(xhr.response.error, xhr.response);
+    });
     try {
-        xhr.addEventListener("readystatechange", function () {
-            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-                options.callback(xhr.response.error, xhr.response);
-            }
-        });
+        xhr.open(options.method, sendUrl)
+        xhr.send(formData)
     } catch (error) {
         options.callback(error);
     }

@@ -81,11 +81,7 @@ class User {
             method: 'POST',
             callback: (error, response) => {
                 if (response.user) {
-                    const user = {
-                        name: response.user.name,
-                        id: response.user.id
-                    }
-                    User.setCurrent(user)
+                    this.setCurrent(response.user)
                 }
                 callback(error, response)
             }

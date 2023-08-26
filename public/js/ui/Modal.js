@@ -25,7 +25,7 @@ class Modal {
      * (с помощью метода Modal.onClose)
      * */
     registerEvents() {
-        const elementsBtns = this.element.querySelector('button[data-dismiss="modal"][data-dismiss]')
+        const elementsBtns = this.element.querySelector('button[data-dismiss="modal"]')
         elementsBtns.addEventListener('click', (e) => {
             e.preventDefault();
             this.onClose(e)
@@ -37,8 +37,8 @@ class Modal {
      * Срабатывает после нажатия на элементы, закрывающие окно.
      * Закрывает текущее окно (Modal.close())
      * */
-    onClose(e) {
-        this.close(e)
+    onClose() {
+        this.close()
     }
 
     /**

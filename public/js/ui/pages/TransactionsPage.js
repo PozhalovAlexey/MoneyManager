@@ -31,11 +31,17 @@ class TransactionsPage {
     registerEvents() {
         this.element.addEventListener('click', (e) => {
             e.preventDefault();
-            if (e.target.classList.contains('remove-account')) {
-                this.removeAccount()
-            } else if (e.target.classList.contains('btn-danger')) {
-                this.removeTransaction(e.target.dataset.id)
+            const removeAccountButton = e.target.closest('.remove-account');
+            const transactionRemoveButton = e.target.closest('.transaction__remove');
+
+            if (removeAccountButton) {
+                return this.removeAccount()
             }
+
+            if (transactionRemoveButton) {
+                this.removeTransaction(transactionRemoveButton.dataset.id)
+            }
+
         })
     }
 
@@ -49,19 +55,18 @@ class TransactionsPage {
      * для обновления приложения
      * */
     removeAccount() {
-        if (this.lastOptions) {
-            if (window.confirm('Вы действительно хотите удалить счёт?')) {
-                this.clear()
-            }
-            Account.remove(
-                {id: id}, (error, response) => {
-                    if (response.success) {
-                        App.updateWidgets();
-                        App.updateForms()
-                    }
+        if (!this.lastOptions) {
+            return
+        }
+        const id = this.lastOptions.account_id;
+        if (confirm('Вы действительно хотите удалить счет?')) {
+            Account.remove({id}, (error, response) => {
+                if (response.success) {
+                    App.updateWidgets()
+                    App.updateForms()
                 }
-            )
-            this.clear()
+                this.clear()
+            })
         }
     }
 
@@ -180,10 +185,10 @@ class TransactionsPage {
      * */
     renderTransactions(data) {
         const content = this.element.querySelector('.content');
-        content.innerHTML = ''
-
-        data.forEach((item) => {
-            content.innerHTML += this.getTransactionHTML(item)
+        content.innerHTML = data.reduce((item) => {
+            content.innerHTML = this.getTransactionHTML(item)
         })
+
+
     }
 }

@@ -13,7 +13,7 @@ class TransactionsWidget {
      * */
     constructor(element) {
         if (!element) {
-            throw new Error('Ошибка! Элемент не существует')
+            alert('Ошибка! Элемент не существует')
         }
         this.element = element;
         this.registerEvents()
@@ -26,21 +26,14 @@ class TransactionsWidget {
      * экземпляра окна
      * */
     registerEvents() {
-        const transactionButtons = document.querySelectorAll('.btn-block');
-        transactionButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                switch (e.closest('button').classList[2]) {
-                    case'btn-success': {
-                        App.getModal('newIncome').open();
-                        break;
-                    }
-                    case 'btn-danger': {
-                        App.getModal('newExpense').open();
-                        break;
-                    }
-                }
-            })
+        const createIncomeButton = this.element.querySelector('.create-income-button')
+        const createExpenseButton = this.element.querySelector('.create-expense-button')
+
+        createIncomeButton.addEventListener('click', () => {
+            App.getModal('newIncome').open()
+        })
+        createExpenseButton.addEventListener('click', () => {
+            App.getModal('newExpense').open()
         })
     }
 }

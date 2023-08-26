@@ -14,9 +14,9 @@ class UserWidget {
     constructor(element) {
         if (!element) {
             throw new Error('Ошибка! Передан пустой элемент!')
-        } else {
-            this.element = element;
         }
+        this.element = element;
+
     }
 
     /**
