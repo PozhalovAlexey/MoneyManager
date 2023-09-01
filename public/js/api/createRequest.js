@@ -15,7 +15,7 @@ const createRequest = (options = {}) => {
             });
         }
     }
-    xhr.addEventListener("load", function () {
+    xhr.addEventListener('load', function () {
         options.callback(xhr.response.error, xhr.response);
     });
     try {

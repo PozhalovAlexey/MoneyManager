@@ -95,19 +95,23 @@ class TransactionsPage {
      * в TransactionsPage.renderTransactions()
      * */
     render(options) {
-        if (options) {
-            this.lastOptions = options;
-            Account.get(options.account_id, (error, response) => {
-                if (response.success) {
-                    this.renderTitle(response.data.name);
-                }
-            })
-            Transaction.list(options, (error, response) => {
-                if (response.success) {
-                    this.removeTransaction(response.data)
-                }
-            })
+        if (!options) {
+            return;
         }
+
+        this.lastOptions = options;
+
+        Account.get(options.account_id, (err, response) => {
+            if (response && response.success) {
+                this.renderTitle(response.data.name);
+            }
+        });
+
+        Transaction.list(options, (err, response) => {
+            if (response && response.success) {
+                this.renderTransactions(response.data);
+            }
+        });
     }
 
     /**
@@ -125,8 +129,7 @@ class TransactionsPage {
      * Устанавливает заголовок в элемент .content-title
      * */
     renderTitle(name) {
-        this.element.textContent = '';
-        this.element.insertAdjacentText('afterbegin', name)
+        this.element.querySelector(".content-title").textContent = name;
     }
 
     /**

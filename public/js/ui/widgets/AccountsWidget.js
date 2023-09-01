@@ -29,13 +29,18 @@ class AccountsWidget {
     registerEvents() {
         this.element.addEventListener('click', (e) => {
             e.preventDefault();
-            if (e.target.closest('span.create-account')) {
-                App.getModal('create-account').open();
+
+            const createAccountBtn = e.target.closest('.create-account');
+            const accountBtn = e.target.closest('.account');
+
+            if (createAccountBtn) {
+                return App.getModal('createAccount').open();
             }
-            if (e.target.closest('li.account')) {
-                this.onSelectAccount(e.target.closest('li.account'))
+
+            if (accountBtn) {
+                this.onSelectAccount(accountBtn);
             }
-        })
+        });
     }
 
     /**
@@ -65,7 +70,11 @@ class AccountsWidget {
      * в боковой колонке
      * */
     clear() {
-        this.element.forEach(item => item.remove())
+        const accounts = this.element.querySelectorAll('.account')
+
+        for (const element of accounts) {
+            element.remove()
+        }
     }
 
     /**
@@ -76,14 +85,14 @@ class AccountsWidget {
      * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
      * */
     onSelectAccount(element) {
+        const accounts = this.element.querySelectorAll('.active');
 
-        if (this.element) {
-            this.element.classList.remove('active');
+        for (const element of accounts) {
+            element.classList.remove('active');
         }
+
         element.classList.add('active');
-        App.showPage('transactions', {
-            account_id: element.dataset.id
-        })
+        App.showPage('transactions', {account_id: element.dataset.id});
     }
 
     /**
@@ -92,13 +101,12 @@ class AccountsWidget {
      * item - объект с данными о счёте
      * */
     getAccountHTML(item) {
-        return `<li class='account' data-id=${item.id}>
+        return `<li class='active account' data-id=${item.id}>
                     <a href="#">
                         <span>${item.name}</span>
                         <span>${item.sum}</span>
                     </a>
-                </li>
-    `
+                </li>`
     }
 
     /**
