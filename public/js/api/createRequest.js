@@ -6,7 +6,7 @@ const createRequest = (options = {}) => {
     if (options.data) {
         if (options.method === 'GET') {
             Object.entries(options.data).forEach(([key, value]) => {
-                sendUrl += `${key}=${value}`;
+                sendUrl += `${key}=${value}&`;
             });
             sendUrl = sendUrl.slice(0, -1);
         } else {
@@ -19,6 +19,8 @@ const createRequest = (options = {}) => {
         options.callback(xhr.response.error, xhr.response);
     });
     try {
+        console.log(formData, options.method, sendUrl)
+
         xhr.open(options.method, sendUrl)
         xhr.send(formData)
     } catch (error) {

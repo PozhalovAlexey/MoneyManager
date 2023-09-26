@@ -14,6 +14,18 @@
     },
     {
       "id": "bpu90sar4lljhkwdn"
+    },
+    {
+      "id": "bpu90sc2wllzcrzw1"
+    },
+    {
+      "id": "bpu90s7kgllzct0j1"
+    },
+    {
+      "id": "bpu90sacollzcvvxl"
+    },
+    {
+      "id": "bpu90s3p8lm0r7a2i"
     }
   ],
   "accounts": [
@@ -31,6 +43,21 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "asdads",
+      "user_id": "1",
+      "id": "bpu90s8toln0j19k4"
+    },
+    {
+      "name": "Алексей",
+      "user_id": "1",
+      "id": "bpu90sr0ln0kpijw"
+    },
+    {
+      "name": "pozh17alex",
+      "user_id": "1",
+      "id": "bpu90s94wln0kt86y"
     }
   ],
   "transactions": [
@@ -168,6 +195,33 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "bpu90s5d0ln0j7j3g",
+      "type": "income",
+      "name": "pozh17alex",
+      "sum": 2134,
+      "account_id": "3",
+      "user_id": "1",
+      "created_at": "2023-09-26T16:28:23.787Z"
+    },
+    {
+      "id": "bpu90sah8ln0j88ev",
+      "type": "income",
+      "name": "qwerqwerwerqwer",
+      "sum": 213423512352135120000,
+      "account_id": "3",
+      "user_id": "1",
+      "created_at": "2023-09-26T16:28:56.598Z"
+    },
+    {
+      "id": "bpu90s7yoln0lsxun",
+      "type": "expense",
+      "name": "Алексей",
+      "sum": 2134,
+      "account_id": "3",
+      "user_id": "1",
+      "created_at": "2023-09-26T17:41:01.918Z"
     }
   ]
 }

@@ -129,7 +129,7 @@ class TransactionsPage {
      * Устанавливает заголовок в элемент .content-title
      * */
     renderTitle(name) {
-        this.element.querySelector(".content-title").textContent = name;
+        this.element.querySelector('.content-title').textContent = name;
     }
 
     /**
@@ -188,10 +188,9 @@ class TransactionsPage {
      * */
     renderTransactions(data) {
         const content = this.element.querySelector('.content');
-        content.innerHTML = data.reduce((item) => {
-            content.innerHTML = this.getTransactionHTML(item)
-        })
 
-
+        content.innerHTML = data.reduce((html, item) => {
+            return html + this.getTransactionHTML(item);
+        }, '');
     }
 }

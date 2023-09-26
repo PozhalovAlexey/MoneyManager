@@ -58,7 +58,7 @@ class AccountsWidget {
             Account.list(User.current(), (error, response) => {
                 if (response.success) {
                     this.clear();
-                    this.renderItem(response.data)
+                    this.renderItems(response.data)
                 }
             })
         }
@@ -115,7 +115,7 @@ class AccountsWidget {
      * AccountsWidget.getAccountHTML HTML-код элемента
      * и добавляет его внутрь элемента виджета
      * */
-    renderItem(data) {
+    renderItems(data) {
         data.forEach(item => {
             this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item))
         })

@@ -10,7 +10,6 @@ class CreateTransactionForm extends AsyncForm {
     constructor(element) {
         super(element)
         this.renderAccountsList();
-        this.element = element
     }
 
     /**
@@ -19,14 +18,17 @@ class CreateTransactionForm extends AsyncForm {
      * */
     renderAccountsList() {
         const accountsSelect = this.element.querySelector('.accounts-select');
+        const accountsList = document.querySelector('.accounts-panel');
 
-        Account.list(User.current(), (err, response) => {
-            accountsSelect.innerHTML = '';
+        Account.list((err, {data, success}) => {
+            if (success) {
+                accountsSelect.innerHTML = data.reduce((html, {id, name}) => {
+                    return html + `<option value="${id}">${name}</option>`;
+                }, '');
 
-            if (response && response.success) {
-                response.data.forEach(({id, name}) => {
-                    accountsSelect.innerHTML += `<option value='${id}'>${name}</option>`;
-                });
+                accountsList.innerHTML = data.reduce((html, {id, name}) => {
+                    return html + `<li class="menu-item"><a href="#"><span>${name}</span></a></li>`;
+                }, '');
             }
         });
     }
@@ -38,14 +40,14 @@ class CreateTransactionForm extends AsyncForm {
      * в котором находится форма
      * */
     onSubmit(data) {
-        Transaction.create(data, (err, response) => {
+        Transaction.create(data, (error, response) => {
                 this.element.reset();
                 if (response.success) {
                     App.getModal('newIncome').close();
                     App.getModal('newExpense').close();
                     App.update()
                 } else {
-                    alert(response.err)
+                    alert(response.error)
                 }
             }
         )
