@@ -55,11 +55,9 @@ class AccountsWidget {
      * */
     update() {
         if (User.current()) {
-            Account.list(User.current(), (error, response) => {
-                if (response.success) {
+            Account.list(null, (response) => {
                     this.clear();
                     this.renderItems(response.data)
-                }
             })
         }
     }
