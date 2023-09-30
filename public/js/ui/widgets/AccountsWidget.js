@@ -55,7 +55,7 @@ class AccountsWidget {
      * */
     update() {
         if (User.current()) {
-            Account.list(null, (response) => {
+            Account.list((response) => {
                     this.clear();
                     this.renderItems(response.data)
             })
@@ -99,7 +99,7 @@ class AccountsWidget {
      * item - объект с данными о счёте
      * */
     getAccountHTML(item) {
-        return `<li class='active account' data-id=${item.id}>
+        return `<li class='account' data-id=${item.id}>
                     <a href="#">
                         <span>${item.name}</span>
                         <span>${item.sum}</span>
