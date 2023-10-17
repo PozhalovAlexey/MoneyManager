@@ -40,24 +40,9 @@
       "id": "2"
     },
     {
-      "name": "Бизнес",
-      "user_id": "1",
-      "id": "3"
-    },
-    {
-      "name": "asdads",
-      "user_id": "1",
-      "id": "bpu90s8toln0j19k4"
-    },
-    {
       "name": "Алексей",
       "user_id": "1",
       "id": "bpu90sr0ln0kpijw"
-    },
-    {
-      "name": "pozh17alex",
-      "user_id": "1",
-      "id": "bpu90s94wln0kt86y"
     }
   ],
   "transactions": [
@@ -134,94 +119,22 @@
       "user_id": "1"
     },
     {
-      "account_id": "3",
-      "created_at": "2017-10-15 13:27:02",
-      "id": "9",
-      "name": "На банду",
-      "sum": 15000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-09-17 13:27:02",
-      "id": "10",
-      "name": "На стволы",
-      "sum": 6000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-12-27 13:27:02",
-      "id": "11",
-      "name": "Прибыль с банка",
-      "sum": 1500000,
+      "id": "bpu90s4wglnhhirbj",
       "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2018-01-15 13:27:02",
-      "id": "12",
-      "name": "Прибыль с магазина",
-      "sum": 300000,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2018-01-15 13:27:02",
-      "id": "13",
-      "name": "Подарок сизого",
-      "sum": 20000,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-09-15 13:27:02",
-      "id": "14",
-      "name": "На охрану",
-      "sum": 60000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-10-15 13:27:02",
-      "id": "15",
-      "name": "На бумер",
-      "sum": 300000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "id": "bpu90s5d0ln0j7j3g",
-      "type": "income",
-      "name": "pozh17alex",
-      "sum": 2134,
-      "account_id": "3",
+      "name": "sdafasdfasdf",
+      "sum": 1234124,
+      "account_id": "1",
       "user_id": "1",
-      "created_at": "2023-09-26T16:28:23.787Z"
+      "created_at": "2023-10-08T13:13:13.422Z"
     },
     {
-      "id": "bpu90sah8ln0j88ev",
-      "type": "income",
-      "name": "qwerqwerwerqwer",
-      "sum": 213423512352135120000,
-      "account_id": "3",
-      "user_id": "1",
-      "created_at": "2023-09-26T16:28:56.598Z"
-    },
-    {
-      "id": "bpu90s7yoln0lsxun",
+      "id": "bpu90s21clnhjmki5",
       "type": "expense",
       "name": "Алексей",
-      "sum": 2134,
-      "account_id": "3",
+      "sum": 123,
+      "account_id": "2",
       "user_id": "1",
-      "created_at": "2023-09-26T17:41:01.918Z"
+      "created_at": "2023-10-08T14:12:10.444Z"
     }
   ]
 }

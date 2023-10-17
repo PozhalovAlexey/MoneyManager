@@ -55,9 +55,15 @@ class AccountsWidget {
    * */
   update() {
     if (User.current()) {
-      Account.list(null, (response) => {
-        this.clear();
-        this.renderItems(response.data);
+      Account.list(null, (err, response) => {
+        if (response && response.success) {
+          this.clear();
+          response.data.forEach((item) => {
+            this.renderItems(item);
+          });
+        } else {
+          alert(err);
+        }
       });
     }
   }
@@ -113,9 +119,7 @@ class AccountsWidget {
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItems(data) {
-    data.forEach((item) => {
-      this.element.insertAdjacentHTML("beforeend", this.getAccountHTML(item));
-    });
+  renderItems(item) {
+    this.element.insertAdjacentHTML("beforeend", this.getAccountHTML(item));
   }
 }
