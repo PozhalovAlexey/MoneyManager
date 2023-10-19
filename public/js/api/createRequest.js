@@ -6,7 +6,7 @@ const createRequest = (options = {}) => {
   if (options.data) {
     if (options.method === "GET") {
       Object.entries(options.data).forEach(([key, value]) => {
-        sendUrl += `${key}?${value}&`;
+        sendUrl += `?${key}=${value}&`;
       });
       sendUrl = sendUrl.slice(0, -1);
     } else {
